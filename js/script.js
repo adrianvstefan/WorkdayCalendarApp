@@ -13,12 +13,10 @@ function timeBlocks() {
         var timeColumn = $('<div>').addClass('col-1 hour').text(dayjs().hour(i).format('hA'))
         timeBlock.append(timeColumn)
 
-        container.append(timeBlock)
-
         // Add the save button for each column 
 
         var saveBtn = $('<button>').addClass('col-2 saveBtn').html('<i class="fas fa-save"></i>');
-        timeBlock.append(saveBtn)
+        
 
         // Add the text area for user to input
 
@@ -33,15 +31,25 @@ function timeBlocks() {
             textArea.addClass('present');
           } else {
             textArea.addClass('future');
-          }
-          // Save the uset input in the local storage
-          
-          saveBtn.on('click', function () {
-            var text = $(this).prev().val();
-            var hour = $(this).parent().i() + 9; // Get the hour from the row index
-            localStorage.setItem('hour-' + hour, text);
-          });
+        }
 
+        // Save the user input in the local storage
+        
+        saveBtn.on('click', function () {
+            var text = $(this).prev().val();
+            var hour = $(this).parent().index() + 9; // Get the hour from the row index
+            localStorage.setItem('hour-' + hour, text);
+            });
+
+        // Retrieve saved text from local storage
+
+        var savedText = localStorage.getItem('hour-' + i);
+        if (savedText) {
+        textArea.val(savedText);
+        }
+        timeBlock.append(saveBtn)
+
+        container.append(timeBlock)      
     }
 }
 
