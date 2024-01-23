@@ -1,7 +1,7 @@
 // Display of the current date and time
 function displayTime() {
-var currentTime = dayjs().format('dddd, MMMM D, YYYY, h:mm A');
-$('#currentDay').text(currentTime);
+    var currentTime = dayjs().format('dddd, MMMM D, YYYY, h:mm A');
+    $('#currentDay').text(currentTime);
 }
 // Create the time blocks with the columns for working hours
 function timeBlocks() {
